@@ -18,4 +18,4 @@ php /var/www/snapshot/artisan optimize
 php /var/www/snapshot/artisan route:cache
 
 # Reload PHP-FPM so that any cached code is subsequently refreshed
-service php8.1-fpm reload
+service php8.2-fpm reload
