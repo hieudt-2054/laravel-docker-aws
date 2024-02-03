@@ -11,4 +11,4 @@ php /var/www/snapshot/artisan view:clear
 php /var/www/snapshot/artisan config:cache
 php /var/www/snapshot/artisan optimize
 php /var/www/snapshot/artisan route:cache
-service php8.1-fpm reload
+service php8.2-fpm reload
