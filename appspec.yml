@@ -21,6 +21,7 @@ hooks:
   AfterInstall:
     - location: scripts/dependencies.sh
       timeout: 300
+      runas: root
     - location: scripts/pull_env_from_s3.sh
       timeout: 300
     - location: scripts/migrate.sh
