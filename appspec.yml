@@ -4,9 +4,40 @@ files:
   - source: /
     destination: /var/www/snapshot
 hooks:
+  # AfterInstall:
+  #   - location: scripts/finish_install.sh
+  # ApplicationStart:
+  #   - location: scripts/bind_app.sh
+  #     timeout: 120
+  #     runas: root
+  # ApplicationStop:
+  #   - location: scripts/enter_maintenance_mode.sh
+  #     timeout: 300
+  #     runas: webuser
+  # BeforeInstall:
+  #   - location: scripts/cleanup.sh
+  #     timeout: 300
+  #     runas: webuser
   AfterInstall:
-    - location: scripts/finish_install.sh
+    - location: scripts/dependencies.sh
+      timeout: 300
+      runas: webuser
+    - location: scripts/pull_env_from_s3.sh
+      timeout: 300
+      runas: webuser
+    - location: scripts/migrate.sh
+      timeout: 300
+      runas: webuser
+    - location: scripts/optimize.sh
+      timeout: 300
+      runas: webuser
+
   ApplicationStart:
-    - location: scripts/bind_app.sh
-      timeout: 120
+    - location: scripts/exit_maintenance_mode.sh
+      timeout: 300
       runas: root
+
+  ValidateService:
+    - location: scripts/validate_service.sh
+      timeout: 300
+      runas: webuser
