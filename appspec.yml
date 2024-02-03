@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/snapshot
+hooks:
+  AfterInstall:
+    - location: scripts/finish_install.sh
+  ApplicationStart:
+    - location: scripts/bind_app.sh
+      timeout: 120
+      runas: root
