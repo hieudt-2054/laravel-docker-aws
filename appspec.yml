@@ -4,20 +4,9 @@ files:
   - source: /
     destination: /var/www/snapshot
 hooks:
-  # AfterInstall:
-  #   - location: scripts/finish_install.sh
-  # ApplicationStart:
-  #   - location: scripts/bind_app.sh
-  #     timeout: 120
-  #     runas: root
-  # ApplicationStop:
-  #   - location: scripts/enter_maintenance_mode.sh
-  #     timeout: 300
-  #     runas: webuser
-  # BeforeInstall:
-  #   - location: scripts/cleanup.sh
-  #     timeout: 300
-  #     runas: webuser
+  BeforeInstall:
+    - location: scripts/cleanup.sh
+      timeout: 300
   AfterInstall:
     - location: scripts/dependencies.sh
       timeout: 300
